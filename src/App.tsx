@@ -54,7 +54,7 @@ export function App() {
 
   return (
     <>
-      <h1>My posts</h1>
+      <h1>Post list</h1>
       <ul>
         {posts.map((post: Post) => (
           <li key={post.id}>
