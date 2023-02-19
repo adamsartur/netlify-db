@@ -1,3 +1,4 @@
+import { Trash } from "phosphor-react";
 import { useEffect, useState } from "preact/hooks";
 
 type Post = {
@@ -31,10 +32,16 @@ export function App() {
     load();
   }, [loadPosts]);
 
+  async function handleRemove(postId: number) {
+    await fetch("/.netlify/functions/removePost", {
+      method: "POST",
+      body: JSON.stringify({ postId }),
+    });
+    setLoadPosts(true);
+  }
+
   async function handleSubmit(event: any) {
     event.preventDefault();
-
-    console.log(title, content);
 
     await fetch("/.netlify/functions/post", {
       method: "POST",
@@ -51,7 +58,16 @@ export function App() {
       <ul>
         {posts.map((post: Post) => (
           <li key={post.id}>
-            <h3>{post.title}</h3>
+            <h3>
+              {post.title}
+              <a
+                onClick={() => {
+                  handleRemove(post.id);
+                }}
+              >
+                <Trash />
+              </a>
+            </h3>
             <p>Created {new Date(post.createdAt).toLocaleString()}</p>
             <p>{post.content}</p>
           </li>
