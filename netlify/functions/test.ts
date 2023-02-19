@@ -1,5 +1,9 @@
 export async function handler() {
   return {
-    test: "test",
+    statusCode: 200,
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: "response.body",
   };
 }
