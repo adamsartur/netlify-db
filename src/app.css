@@ -32,6 +32,7 @@
   left: 0;
   background: #fbfbfb;
   opacity: 0.9;
+  z-index: 99;
 }
 .overlay-loader span {
   display: flex;
