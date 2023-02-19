@@ -4,6 +4,7 @@ import { useState } from "preact/hooks";
 interface CreatePostProps {
   setLoadPosts: Function;
   setIsNewPostOpen: Function;
+  setIsLoading: Function;
   isNewPostOpen: boolean;
   isLoading: boolean;
 }
@@ -13,12 +14,14 @@ function CreatePost({
   setIsNewPostOpen,
   isNewPostOpen,
   isLoading,
+  setIsLoading,
 }: CreatePostProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   async function handleSubmit(event: any) {
     event.preventDefault();
+    setIsLoading(true);
 
     await fetch("/.netlify/functions/post", {
       method: "POST",

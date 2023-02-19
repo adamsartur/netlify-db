@@ -20,11 +20,11 @@ export function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
     async function load() {
       if (!loadPosts) {
         return;
       }
+      setIsLoading(true);
       const allPosts = await fetch("/.netlify/functions/posts").then((res) =>
         res.json()
       );
@@ -74,6 +74,7 @@ export function App() {
         setIsNewPostOpen={setIsNewPostOpen}
         isNewPostOpen={isNewPostOpen}
         isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
     </div>
   );
