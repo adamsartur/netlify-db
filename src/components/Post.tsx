@@ -14,13 +14,13 @@ interface PostProps {
 
 function Post({ post, setIsLoading, setLoadPosts }: PostProps) {
   async function handleRemove(postId: number) {
-    setIsLoading(true);
+    //setIsLoading(true);
     await fetch("/.netlify/functions/removePost", {
       method: "POST",
       body: JSON.stringify({ postId }),
     });
     setLoadPosts(true);
-    setIsLoading(false);
+    //setIsLoading(false);
   }
 
   return (
