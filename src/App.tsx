@@ -32,8 +32,8 @@ export function App() {
       setPosts(allPosts);
       setLoadPosts(false);
     }
-    load();
     setIsLoading(false);
+    load();
   }, [loadPosts]);
 
   return (
