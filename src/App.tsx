@@ -13,23 +13,27 @@ type Post = {
 
 export function App() {
   const [loadPosts, setLoadPosts] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     async function load() {
+      setIsLoading(true);
       if (!loadPosts) {
         return;
       }
       const allPosts = await fetch("/.netlify/functions/posts").then((res) =>
         res.json()
       );
-
+      console.log("posts retrieved");
       setPosts(allPosts);
       setLoadPosts(false);
     }
     load();
+    setIsLoading(false);
+    console.log("isloadingfalse");
   }, [loadPosts]);
 
   async function handleRemove(postId: number) {
@@ -54,7 +58,7 @@ export function App() {
 
   return (
     <>
-      <h1>Post list</h1>
+      <h1>Post list{isLoading && <div>teste</div>}</h1>
       <ul>
         {posts.map((post: Post) => (
           <li key={post.id}>
