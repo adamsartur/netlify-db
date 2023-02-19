@@ -23,3 +23,147 @@
 .read-the-docs {
   color: #888;
 }
+
+.overlay-loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fbfbfb;
+  opacity: 0.9;
+}
+.overlay-loader span {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 100%;
+  flex-wrap: wrap;
+}
+.overlay-loader span svg {
+  animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+div.visible {
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  top: 0px;
+}
+div.hidden {
+  position: absolute;
+  top: -300px;
+}
+
+.overlay-modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #ddd;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.post-form-modal.visible {
+  top: 0px;
+  left: 0px;
+  width: calc(100vw - 64px);
+  height: calc(100vh - 48px);
+  background: rgb(237 237 237 / 90%);
+}
+
+.post-form-modal {
+  display: flex;
+  align-content: space-around;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 2rem 2rem;
+  background: white;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.post-form-modal label {
+  margin-bottom: 0.2rem;
+}
+
+.post-form-modal input {
+  width: calc(100% - 7px);
+}
+
+.post-form-modal-button {
+  width: 100%;
+  color: white;
+  background: green;
+  border-radius: 0.3rem;
+  border: 1px solid green;
+  padding: 0.4rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.post-form-modal-button:hover {
+  filter: brightness(120%);
+}
+
+.post-form-modal > h2 {
+  text-align: left;
+}
+
+.close-modal {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+.posts-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+
+.posts-wrapper li {
+  border-top: 1px solid #e3e3e3;
+  padding-top: 0.6rem;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-header > p {
+  height: 12px;
+  margin-top: 0.5em;
+}
+
+.page-wrapper {
+  display: flex;
+}
+
+.remove-post-button {
+  cursor: pointer;
+  padding: 5px;
+}
+.remove-post-button svg {
+  margin-bottom: -4px;
+}
+
+.create-post-button {
+  margin-left: 5px;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}

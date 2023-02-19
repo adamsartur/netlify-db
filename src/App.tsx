@@ -1,5 +1,7 @@
-import { Trash } from "phosphor-react";
+import { Trash, Spinner, Plus } from "phosphor-react";
 import { useEffect, useState } from "preact/hooks";
+import CreatePost from "./components/CreatePost";
+import Post from "./components/Post";
 
 type Post = {
   id: number;
@@ -14,13 +16,12 @@ type Post = {
 export function App() {
   const [loadPosts, setLoadPosts] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [isNewPostOpen, setIsNewPostOpen] = useState(false);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     async function load() {
-      setIsLoading(true);
       if (!loadPosts) {
         return;
       }
@@ -33,70 +34,47 @@ export function App() {
     }
     load();
     setIsLoading(false);
-    console.log("isloadingfalse");
   }, [loadPosts]);
 
-  async function handleRemove(postId: number) {
-    await fetch("/.netlify/functions/removePost", {
-      method: "POST",
-      body: JSON.stringify({ postId }),
-    });
-    setLoadPosts(true);
-  }
-
-  async function handleSubmit(event: any) {
-    event.preventDefault();
-
-    await fetch("/.netlify/functions/post", {
-      method: "POST",
-      body: JSON.stringify({ title, content, authorId: 2 }),
-    });
-    setTitle("");
-    setContent("");
-    setLoadPosts(true);
-  }
-
   return (
-    <>
-      <h1>Post list{isLoading && <div>teste</div>}</h1>
-      <ul>
-        {posts.map((post: Post) => (
-          <li key={post.id}>
-            <h3>
-              {post.title}
-              <a
-                onClick={() => {
-                  handleRemove(post.id);
-                }}
-              >
-                <Trash />
-              </a>
-            </h3>
-            <p>Created {new Date(post.createdAt).toLocaleString()}</p>
-            <p>{post.content}</p>
-          </li>
-        ))}
-      </ul>
-      <h2>Create post</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle((e.target as HTMLInputElement).value)}
-        />
-        <label htmlFor="content">Content</label>
-        <input
-          type="text"
-          id="content"
-          name="content"
-          value={content}
-          onChange={(e) => setContent((e.target as HTMLInputElement).value)}
-        />
-        <button type="submit">Save</button>
-      </form>
-    </>
+    <div className="page-wrapper">
+      {isLoading && (
+        <div className="overlay-loader">
+          <span>
+            <Spinner size={32} />
+          </span>
+        </div>
+      )}
+      <div className="posts-wrapper">
+        <h1>
+          Post list{" "}
+          <a
+            title="Create a new entry"
+            className="create-post-button"
+            onClick={() => {
+              setIsNewPostOpen(true);
+            }}
+            disabled={isLoading}
+          >
+            <Plus size={24} />
+          </a>
+        </h1>
+        <ul>
+          {posts.map((post: Post) => (
+            <Post
+              post={post}
+              setLoadPosts={setLoadPosts}
+              setIsLoading={setIsLoading}
+            />
+          ))}
+        </ul>
+      </div>
+      <CreatePost
+        setLoadPosts={setLoadPosts}
+        setIsNewPostOpen={setIsNewPostOpen}
+        isNewPostOpen={isNewPostOpen}
+        isLoading={isLoading}
+      />
+    </div>
   );
 }
