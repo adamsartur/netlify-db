@@ -2,6 +2,8 @@ import { Trash, Spinner, Plus } from "phosphor-react";
 import { useEffect, useState } from "preact/hooks";
 import CreatePost from "./components/CreatePost";
 import Post from "./components/Post";
+import QRModal from "./components/QRModal";
+import QRReaderButton from "./components/QRReaderButton";
 
 type Post = {
   id: number;
@@ -18,6 +20,7 @@ export function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isNewPostOpen, setIsNewPostOpen] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [isQRVisible, setIsQRVisible] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -47,6 +50,11 @@ export function App() {
       )}
       <div className="posts-wrapper">
         <h1>
+          <QRModal isQRVisible={isQRVisible} setIsQRVisible={setIsQRVisible} />
+          <QRReaderButton
+            isQRVisible={isQRVisible}
+            setIsQRVisible={setIsQRVisible}
+          />
           Post list{" "}
           <a
             title="Create a new entry"

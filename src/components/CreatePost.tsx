@@ -58,7 +58,7 @@ function CreatePost({
             onChange={(e) => setTitle((e.target as HTMLInputElement).value)}
           />
           <label htmlFor="content">Content</label>
-          <input
+          <textarea
             type="text"
             id="content"
             name="content"
