@@ -30,7 +30,7 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
       /* verbose= */ false
     );
     html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-  }, []);
+  }, [isQRVisible]);
 
   return (
     <div className={isQRVisible ? "overlay-modal" : "overlay-modal hidden"}>
