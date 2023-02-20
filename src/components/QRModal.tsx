@@ -27,7 +27,7 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
 
   useEffect(() => {
     let html5QrcodeScanner = new Html5QrcodeScanner(
-      { facingMode: "environment" },
+      'reader',
       { fps: 10, qrbox: { width: 250, height: 250 } },
       /* verbose= */ false
     );
