@@ -15,7 +15,6 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
     console.log(`Code matched = ${decodedText}`, decodedResult);
     setQrResponse(`Code matched = ${decodedText}`);
     alert(decodedText);
-    html5QrcodeScanner.stop();
     html5QrcodeScanner.clear();
   }
 
