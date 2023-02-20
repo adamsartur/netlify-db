@@ -15,6 +15,11 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
     console.log(`Code matched = ${decodedText}`, decodedResult);
     setQrResponse(`Code matched = ${decodedText}`);
     alert(decodedText);
+    html5QrCode.stop().then((ignore) => {
+  // QR Code scanning is stopped.
+}).catch((err) => {
+  // Stop failed, handle it.
+});
     html5QrcodeScanner.clear();
   }
 
@@ -25,12 +30,12 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
   }
 
   useEffect(() => {
-    let html5QrcodeScanner = new Html5QrcodeScanner(
+    let html5QrCode = new html5QrCode(
       'reader',
       { fps: 10, qrbox: { width: 250, height: 250 } },
       /* verbose= */ false
     );
-    html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    html5QrCode.render(onScanSuccess, onScanFailure);
   }, [isQRVisible]);
 
   return (
