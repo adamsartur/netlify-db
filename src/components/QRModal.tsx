@@ -1,6 +1,6 @@
 import { X } from "phosphor-react";
 import { Html5QrcodeScanner } from "html5-qrcode";
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 interface QRProps {
   setIsQRVisible: Function;
@@ -8,9 +8,12 @@ interface QRProps {
 }
 
 function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
+  const [qrResponse, setQrResponse] = useState("");
+
   function onScanSuccess(decodedText: any, decodedResult: any) {
     // handle the scanned code as you like, for example:
     console.log(`Code matched = ${decodedText}`, decodedResult);
+    setQrResponse(`Code matched = ${decodedText}`);
   }
 
   function onScanFailure(error: any) {
@@ -42,7 +45,7 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
           </a>
           <h1>Read Code</h1>
           <div id="reader" width="600px"></div>
-          <span></span>
+          <span>{qrResponse}</span>
           <span></span>
         </div>
       </div>
