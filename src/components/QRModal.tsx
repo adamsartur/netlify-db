@@ -15,12 +15,6 @@ function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
     console.log(`Code matched = ${decodedText}`, decodedResult);
     setQrResponse(`Code matched = ${decodedText}`);
     alert(decodedText);
-    html5QrcodeScanner.stop().then((ignore) => {
-  // QR Code scanning is stopped.
-}).catch((err) => {
-  // Stop failed, handle it.
-});
-    html5QrcodeScanner.clear();
   }
 
   function onScanFailure(error: any) {
