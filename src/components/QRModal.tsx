@@ -8,12 +8,13 @@ interface QRProps {
 }
 
 function QRModal({ setIsQRVisible, isQRVisible }: QRProps) {
-  const [qrResponse, setQrResponse] = useState("");
+  const [qrResponse, setQrResponse] = useState("Waiting response");
 
   function onScanSuccess(decodedText: any, decodedResult: any) {
     // handle the scanned code as you like, for example:
     console.log(`Code matched = ${decodedText}`, decodedResult);
     setQrResponse(`Code matched = ${decodedText}`);
+    alert(decodedText);
   }
 
   function onScanFailure(error: any) {
