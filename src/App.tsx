@@ -40,53 +40,50 @@ export function App() {
   }, [loadPosts]);
 
   return (
-    <div>
-      hello world
+    <div className="page-wrapper">
+      {isLoading && (
+        <div className="overlay-loader">
+          <span>
+            <Spinner size={32} />
+          </span>
+        </div>
+      )}
+      <div className="posts-wrapper">
+        <h1>
+          <QRModal isQRVisible={isQRVisible} setIsQRVisible={setIsQRVisible} />
+          <QRReaderButton
+            isQRVisible={isQRVisible}
+            setIsQRVisible={setIsQRVisible}
+          />
+          Post list{" "}
+          <a
+            title="Create a new entry"
+            className="create-post-button"
+            onClick={() => {
+              setIsNewPostOpen(true);
+            }}
+            disabled={isLoading}
+          >
+            <Plus size={24} />
+          </a>
+        </h1>
+        <ul>
+          {posts.map((post: Post) => (
+            <Post
+              post={post}
+              setLoadPosts={setLoadPosts}
+              setIsLoading={setIsLoading}
+            />
+          ))}
+        </ul>
+      </div>
+      <CreatePost
+        setLoadPosts={setLoadPosts}
+        setIsNewPostOpen={setIsNewPostOpen}
+        isNewPostOpen={isNewPostOpen}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
     </div>
-    // <div className="page-wrapper">
-    //   {isLoading && (
-    //     <div className="overlay-loader">
-    //       <span>
-    //         <Spinner size={32} />
-    //       </span>
-    //     </div>
-    //   )}
-    //   <div className="posts-wrapper">
-    //     <h1>
-    //       <QRModal isQRVisible={isQRVisible} setIsQRVisible={setIsQRVisible} />
-    //       <QRReaderButton
-    //         isQRVisible={isQRVisible}
-    //         setIsQRVisible={setIsQRVisible}
-    //       />
-    //       Post list{" "}
-    //       <a
-    //         title="Create a new entry"
-    //         className="create-post-button"
-    //         onClick={() => {
-    //           setIsNewPostOpen(true);
-    //         }}
-    //         disabled={isLoading}
-    //       >
-    //         <Plus size={24} />
-    //       </a>
-    //     </h1>
-    //     <ul>
-    //       {posts.map((post: Post) => (
-    //         <Post
-    //           post={post}
-    //           setLoadPosts={setLoadPosts}
-    //           setIsLoading={setIsLoading}
-    //         />
-    //       ))}
-    //     </ul>
-    //   </div>
-    //   <CreatePost
-    //     setLoadPosts={setLoadPosts}
-    //     setIsNewPostOpen={setIsNewPostOpen}
-    //     isNewPostOpen={isNewPostOpen}
-    //     isLoading={isLoading}
-    //     setIsLoading={setIsLoading}
-    //   />
-    // </div>
   );
 }
