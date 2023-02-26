@@ -1,4 +1,10 @@
+[[redirects]]
+  from = "/api/"
+  to = "https://myprisma.netlify.app/.netlify/functions/"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
 [[headers]]
-for = "/*"
-[headers.values]
-Access-Control-Allow-Origin = "*"
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
