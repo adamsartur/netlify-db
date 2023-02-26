@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/api/posts"
-  to = "https://myprisma.netlify.app/.netlify/functions/posts"
+  from = "/api/"
+  to = "https://myprisma.netlify.app/.netlify/functions/"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
