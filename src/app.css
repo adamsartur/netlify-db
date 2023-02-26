@@ -3,6 +3,17 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  height: calc(100vh - 64px);
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+#app.dark {
+  background-color: #363636;
+}
+
+#app.dark {
+  color: #fff;
 }
 
 .logo {
@@ -60,7 +71,7 @@ div.visible {
 }
 div.hidden {
   position: absolute;
-  top: -300px;
+  top: -500px;
 }
 
 .overlay-modal {
@@ -95,6 +106,7 @@ div.hidden {
   background: white;
   border-radius: 0.5rem;
   position: relative;
+  color: black;
 }
 
 .post-form-modal label {

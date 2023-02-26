@@ -13,7 +13,9 @@
     "html5-qrcode": "^2.3.7",
     "netlify": "^13.1.2",
     "phosphor-react": "^1.4.1",
-    "preact": "^10.11.3"
+    "preact": "^10.11.3",
+    "preact-router": "^4.1.0",
+    "zod": "^3.20.6"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
